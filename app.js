@@ -30,23 +30,26 @@ const game = {
     } else if(guess === 'quit') {
       console.log('asdf')
     } else {
-      // if it fails the if, try again
+      // if it fails the if statement, try again
       this.getGuess()
     }
   },
   render: function(usr, rnd) {
-    if(parseInt(usr) === parseInt(rnd) && this.prevGuesses.length > 1) {
+    if(parseInt(usr) === parseInt(rnd) && this.prevGuesses.length > 1) { // congrats message
       window.alert(`Congrats! You guessed the number in ${this.prevGuesses.length} tries!`)
-    } else if(parseInt(usr) === parseInt(rnd)) {
+    } else if(parseInt(usr) === parseInt(rnd)) { // Check if user solved in 1 try and give super secret special message
       window.alert(`Congrats! You guessed the number in ${this.prevGuesses.length} try...
-      You're not cheating are you?`)
-    } else if(parseInt(usr) > rnd) {
+      You're not cheating are you?`) 
+    } else if(parseInt(usr) > rnd) { //guess too high
       window.alert(`Your guess is too High
-      previous guesses: ${this.prevGuesses.toString()}`)
-    } else {
+      previous guesses: ${this.prevGuesses.toString()}`) 
+    } else { // guess too low
       window.alert(`Your guess is too Low
       previous guesses: ${this.prevGuesses.toString()}`)
     }
+  },
+  resize: function(){
+    
   }
 }
 
