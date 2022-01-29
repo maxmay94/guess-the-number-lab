@@ -18,6 +18,7 @@ const game = {
     } while(parseInt(guess) !== parseInt(this.secretNum)) //exits loop when user correctly guesses secretNum
     
     console.log("You got it!")
+    return
   },
   getGuess: function() {
     // promt user to make guess, save input as guess
@@ -34,8 +35,11 @@ const game = {
     }
   },
   render: function(usr, rnd) {
-    if(parseInt(usr) === parseInt(rnd)) {
+    if(parseInt(usr) === parseInt(rnd) && this.prevGuesses.length > 1) {
       window.alert(`Congrats! You guessed the number in ${this.prevGuesses.length} tries!`)
+    } else if(parseInt(usr) === parseInt(rnd)) {
+      window.alert(`Congrats! You guessed the number in ${this.prevGuesses.length} try...
+      You're not cheating are you?`)
     } else if(parseInt(usr) > rnd) {
       window.alert(`Your guess is too High
       previous guesses: ${this.prevGuesses.toString()}`)
