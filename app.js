@@ -28,8 +28,9 @@ const game = {
   getGuess: function() {
     // promt user to make guess between smallestNum and biggestNum, save input as guess
     let guess = prompt(`Enter a guess between ${this.smallestNum} and ${this.biggestNum}: `)
+    guess = parseInt(guess)
     // if guess is a NUMBER between smallestNum and Biggest Num
-    if(Number.isInteger(parseInt(guess)) && guess >= this.smallestNum && guess <= this.biggestNum){
+    if(Number.isInteger(guess) && guess >= this.smallestNum && guess <= this.biggestNum){
       this.prevGuesses.push(parseInt(guess)) // add guess to prevGuesses
     } else if(guess === 'quit') {
       return 
