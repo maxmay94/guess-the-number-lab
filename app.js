@@ -3,11 +3,11 @@ const game = {
   biggestNum: 100,
   smallestNum: 1,
   secretNum: null,
+  dumb: false,
   prevGuesses: [],
 
   /// PLAY
   play: function() {
-
     // Set new Range
     this.resize()
 
@@ -46,8 +46,13 @@ const game = {
 
     //If usr input = random number AND there has been more than one guess
     if(parseInt(usr) === this.secretNum && this.prevGuesses.length > 1) { // congrats message
-      window.alert(`Congrats! You guessed the number in ${this.prevGuesses.length} tries!`)
-      solve = true
+      if(this.dumb === false) {
+        window.alert(`Congrats! You guessed the number in ${this.prevGuesses.length} tries!`)
+        solve = true
+      } else {
+        window.alert(`You figured it out in ${this.prevGuesses.length} tries! (not counting the dumb ones)`)
+        solve = true
+      }
     } else if(parseInt(usr) === this.secretNum) { // Check if user solved in 1 try and give super secret special message
       window.alert(`Congrats! You guessed the number in ${this.prevGuesses.length} try...You're not cheating are you?`)
       solve = true
@@ -65,6 +70,7 @@ const game = {
       solve = false
     } else if(usr === 'Invalid Guess') {
       window.alert(`Nice try bozo`)
+      this.dumb = true
       solve = false
     } else {
       window.alert('Something has gone terribly wrong...')
@@ -92,7 +98,7 @@ const game = {
     if(newRange.length !== 2 || !Number.isInteger(big) || !Number.isInteger(small)) {
       window.alert(`You're doing something wrong...`)
       this.resize()
-    } else if(small >= big) { //is the second number was bigger than the first, swap them 
+    } else if(small >= big) { //if the second number was bigger than the first, swap them 
       this.smallestNum = big
       this.biggestNum = small
     }
